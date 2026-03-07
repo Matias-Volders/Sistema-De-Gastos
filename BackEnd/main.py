@@ -11,7 +11,11 @@ def menu():
         print("5. Calcular balance")
         print("6. Mostrar gastos por categoría")
         print("7. Mostrar gastos mensuales")
-        print("8. Salir")
+        print("8. Editar gasto")
+        print("9. Editar ingreso")
+        print("10. Eliminar gasto")
+        print("11. Eliminar ingreso")
+        print("12. Salir")
 
         opcion = input("Seleccione una opción: ")
 
@@ -30,9 +34,20 @@ def menu():
         elif opcion == "7":
             utils.gastosMensuales()
         elif opcion == "8":
+            utils.editarGasto()
+        elif opcion == "9":
+            utils.editarIngreso()
+        elif opcion == "10":
+            utils.eliminarGasto()
+        elif opcion == "11":
+            utils.eliminarIngreso()
+        elif opcion == "12":
             print("Saliendo del sistema...")
             break
         else:
             print("Opción inválida. Intente nuevamente.")
 
-menu()
+if __name__ == "__main__":
+    utils.cargar_gastos()
+    utils.cargar_ingresos()
+    menu()
