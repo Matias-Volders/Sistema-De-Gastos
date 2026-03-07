@@ -1,0 +1,15 @@
+
+
+Gasto
+    id
+    fecha
+    monto
+    categoría
+    descripción
+
+Ingreso
+    id
+    fecha
+    monto
+    origen
+    descripción
