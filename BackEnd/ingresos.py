@@ -88,3 +88,39 @@ def eliminarIngreso():
 
     print("Ingreso eliminado exitosamente.")
     print(f"Se eliminó: {ingreso_eliminado['descripcion']} - ${ingreso_eliminado['monto']}")
+
+
+def obtener_ingresos():
+    return persistencia.ingresos
+
+def registrar_ingreso_web(monto, origen, descripcion):
+    ingreso = {
+        "monto": float(monto),
+        "fecha": datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
+        "origen": origen,
+        "descripcion": descripcion
+    }
+    persistencia.ingresos.append(ingreso)
+    persistencia.guardar_ingresos()
+
+def editar_ingreso_web(indice, monto, origen, descripcion):
+    indice = int(indice)
+
+    if indice < 0 or indice >= len(persistencia.ingresos):
+        return False
+
+    persistencia.ingresos[indice]["monto"] = float(monto)
+    persistencia.ingresos[indice]["origen"] = origen
+    persistencia.ingresos[indice]["descripcion"] = descripcion
+    persistencia.guardar_ingresos()
+    return True
+
+def eliminar_ingreso_web(indice):
+    indice = int(indice)
+
+    if indice < 0 or indice >= len(persistencia.ingresos):
+        return False
+
+    persistencia.ingresos.pop(indice)
+    persistencia.guardar_ingresos()
+    return True

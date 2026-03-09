@@ -18,28 +18,28 @@
 
             <article>
                 <h3>Gestionar Gastos</h3>
-                <a href="funcionalidades/gastos.html">Ir a Gastos</a>
+                <a href="{{ url_for('pagina_gastos') }}">Ir a Gastos</a>
             </article>
 
             <hr>
 
             <article>
                 <h3>Gestionar Ingresos</h3>
-                <a href="funcionalidades/ingresos.html">Ir a Ingresos</a>
+                    <a href="{{ url_for('pagina_ingresos') }}">Ir a Ingresos</a>
             </article>
 
             <hr>
 
             <article>
                 <h3>Analizar Balances</h3>
-                <a href="funcionalidades/balance.html">Ir a Balances</a>
+                <a href="{{ url_for('pagina_balance') }}">Ir a Balances</a>
             </article>
         </section>
     </main>
 
     <footer>
         <br>
-        <a href="landingPage.html">Mas sobre nosotros</a>
+        <a href="{{ url_for('landing') }}">Volver al inicio</a>
     </footer>
 
 </body>

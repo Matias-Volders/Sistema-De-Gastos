@@ -37,3 +37,33 @@ def balanceMensual():
     print(f"Total ingresos: ${total_ingresos}")
     print(f"Total gastos: ${total_gastos}")
     print(f"Balance: ${balance}")
+
+def calcular_balance_total_web():
+    total_gastos = sum(gasto["monto"] for gasto in persistencia.gastos)
+    total_ingresos = sum(ingreso["monto"] for ingreso in persistencia.ingresos)
+
+    return {
+        "total_gastos": total_gastos,
+        "total_ingresos": total_ingresos,
+        "balance": total_ingresos - total_gastos
+    }
+
+def balance_mensual_web(mes, anio):
+    total_gastos = 0
+    total_ingresos = 0
+
+    for gasto in persistencia.gastos:
+        fecha = datetime.strptime(gasto["fecha"], "%d/%m/%Y %H:%M:%S")
+        if fecha.month == int(mes) and fecha.year == int(anio):
+            total_gastos += gasto["monto"]
+
+    for ingreso in persistencia.ingresos:
+        fecha = datetime.strptime(ingreso["fecha"], "%d/%m/%Y %H:%M:%S")
+        if fecha.month == int(mes) and fecha.year == int(anio):
+            total_ingresos += ingreso["monto"]
+
+    return {
+        "ingresos": total_ingresos,
+        "gastos": total_gastos,
+        "balance": total_ingresos - total_gastos
+    }

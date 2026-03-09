@@ -5,5 +5,9 @@ function mostrarSeccion(seccionId) {
         seccion.style.display = "none";
     });
 
-    document.getElementById(seccionId).style.display = "block";
+    const seccionElegida = document.getElementById(seccionId);
+
+    if (seccionElegida) {
+        seccionElegida.style.display = "block";
+    }
 }

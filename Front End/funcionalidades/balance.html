@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Análisis de Balances</title>
+    <title>Balances</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 
@@ -14,77 +15,65 @@
 
     <main>
         <section>
-            <button onclick="mostrarSeccion('balanceTotal')">Balance total</button>
-            <button onclick="mostrarSeccion('balanceMensual')">Balance mensual</button>
-            <button onclick="mostrarSeccion('gastosCategoria')">Gastos por categoría mensual</button>
+            <button onclick="mostrarSeccion('balanceTotal')" type="button">Balance total</button>
+            <button onclick="mostrarSeccion('balanceMensual')" type="button">Balance mensual</button>
         </section>
 
         <hr>
 
         <section id="balanceTotal" style="display: none;">
             <h2>Balance Total</h2>
-            <button type="button">Calcular balance total</button>
-
-            <p><strong>Total de ingresos:</strong> $0</p>
-            <p><strong>Total de gastos:</strong> $0</p>
-            <p><strong>Balance total:</strong> $0</p>
+            <p><strong>Total ingresos:</strong> {{ balance_total.total_ingresos }}</p>
+            <p><strong>Total gastos:</strong> {{ balance_total.total_gastos }}</p>
+            <p><strong>Balance:</strong> {{ balance_total.balance }}</p>
         </section>
 
         <section id="balanceMensual" style="display: none;">
             <h2>Balance Mensual</h2>
-            <form>
-                <label for="mesBalance">Mes:</label><br>
-                <input type="number" id="mesBalance" name="mesBalance" min="1" max="12" required><br><br>
+            <form action="{{ url_for('balance_mensual') }}" method="post">
+                <label>Mes:</label><br>
+                <input type="number" name="mes" min="1" max="12" required><br><br>
 
-                <label for="anioBalance">Año:</label><br>
-                <input type="number" id="anioBalance" name="anioBalance" required><br><br>
+                <label>Año:</label><br>
+                <input type="number" name="anio" required><br><br>
 
                 <button type="submit">Consultar balance mensual</button>
             </form>
 
-            <br>
+            {% if balance_mensual %}
+                <h3>Resultado de {{ mes_consultado }}/{{ anio_consultado }}</h3>
+                <p><strong>Ingresos del mes:</strong> {{ balance_mensual.ingresos }}</p>
+                <p><strong>Gastos del mes:</strong> {{ balance_mensual.gastos }}</p>
+                <p><strong>Balance del mes:</strong> {{ balance_mensual.balance }}</p>
 
-            <p><strong>Ingresos del mes:</strong> $0</p>
-            <p><strong>Gastos del mes:</strong> $0</p>
-            <p><strong>Balance del mes:</strong> $0</p>
-        </section>
-
-        <section id="gastosCategoria" style="display: none;">
-            <h2>Gastos por Categoría Mensual</h2>
-            <form>
-                <label for="mesCategoria">Mes:</label><br>
-                <input type="number" id="mesCategoria" name="mesCategoria" min="1" max="12" required><br><br>
-
-                <label for="anioCategoria">Año:</label><br>
-                <input type="number" id="anioCategoria" name="anioCategoria" required><br><br>
-
-                <button type="submit">Consultar gastos por categoría</button>
-            </form>
-
-            <br>
-
-            <table border="1" cellpadding="8">
-                <thead>
-                    <tr>
-                        <th>Categoría</th>
-                        <th>Total gastado</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td colspan="2">Todavía no hay resultados para mostrar.</td>
-                    </tr>
-                </tbody>
-            </table>
+                {% if categorias_resultado %}
+                    <h3>Gastos por categoría</h3>
+                    <table border="1" cellpadding="8">
+                        <thead>
+                            <tr>
+                                <th>Categoría</th>
+                                <th>Total gastado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for categoria, monto in categorias_resultado.items() %}
+                            <tr>
+                                <td>{{ categoria }}</td>
+                                <td>{{ monto }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% endif %}
+            {% endif %}
         </section>
     </main>
-    <!-----
+
     <footer>
         <br>
-        <a href="panel.html">Volver al panel</a>
+        <a href="{{ url_for('panel') }}">Volver al panel</a>
     </footer>
-    --->
-    <script src="script.js"></script>
 
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
