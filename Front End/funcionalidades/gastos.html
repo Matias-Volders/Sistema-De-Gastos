@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Gastos</title>
+</head>
+<body>
+
+    <header>
+        <h1>Gestión de Gastos</h1>
+        <p>Seleccioná la funcionalidad que querés usar.</p>
+    </header>
+
+    <main>
+        <section>
+            <button onclick="mostrarSeccion('registrar')">Registrar gasto</button>
+            <button onclick="mostrarSeccion('mostrar')">Mostrar gastos</button>
+            <button onclick="mostrarSeccion('editar')">Editar gasto</button>
+            <button onclick="mostrarSeccion('eliminar')">Eliminar gasto</button>
+            <button onclick="mostrarSeccion('categoria')">Gastos por categoría mensual</button>
+        </section>
+
+        <hr>
+
+        <section id="registrar" style="display: none;">
+            <h2>Registrar Gasto</h2>
+            <form>
+                <label for="montoGasto">Monto:</label><br>
+                <input type="number" id="montoGasto" name="montoGasto" step="0.01" required><br><br>
+
+                <label for="categoriaGasto">Categoría:</label><br>
+                <input type="text" id="categoriaGasto" name="categoriaGasto" required><br><br>
+
+                <label for="descripcionGasto">Descripción:</label><br>
+                <input type="text" id="descripcionGasto" name="descripcionGasto" required><br><br>
+
+                <button type="submit">Guardar gasto</button>
+            </form>
+        </section>
+
+        <section id="mostrar" style="display: none;">
+            <h2>Mostrar Gastos</h2>
+            <p>Acá se mostrarán los gastos registrados.</p>
+
+            <table border="1" cellpadding="8">
+                <thead>
+                    <tr>
+                        <th>N°</th>
+                        <th>Monto</th>
+                        <th>Fecha</th>
+                        <th>Categoría</th>
+                        <th>Descripción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="5">Todavía no hay gastos para mostrar.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="editar" style="display: none;">
+            <h2>Editar Gasto</h2>
+            <form>
+                <label for="numeroEditarGasto">Número del gasto:</label><br>
+                <input type="number" id="numeroEditarGasto" name="numeroEditarGasto" required><br><br>
+
+                <label for="nuevoMontoGasto">Nuevo monto:</label><br>
+                <input type="number" id="nuevoMontoGasto" name="nuevoMontoGasto" step="0.01"><br><br>
+
+                <label for="nuevaCategoriaGasto">Nueva categoría:</label><br>
+                <input type="text" id="nuevaCategoriaGasto" name="nuevaCategoriaGasto"><br><br>
+
+                <label for="nuevaDescripcionGasto">Nueva descripción:</label><br>
+                <input type="text" id="nuevaDescripcionGasto" name="nuevaDescripcionGasto"><br><br>
+
+                <button type="submit">Editar gasto</button>
+            </form>
+        </section>
+
+        <section id="eliminar" style="display: none;">
+            <h2>Eliminar Gasto</h2>
+            <form>
+                <label for="numeroEliminarGasto">Número del gasto:</label><br>
+                <input type="number" id="numeroEliminarGasto" name="numeroEliminarGasto" required><br><br>
+
+                <button type="submit">Eliminar gasto</button>
+            </form>
+        </section>
+
+        <section id="categoria" style="display: none;">
+            <h2>Gastos por Categoría Mensual</h2>
+            <form>
+                <label for="mesCategoria">Mes:</label><br>
+                <input type="number" id="mesCategoria" name="mesCategoria" min="1" max="12" required><br><br>
+
+                <label for="anioCategoria">Año:</label><br>
+                <input type="number" id="anioCategoria" name="anioCategoria" required><br><br>
+
+                <button type="submit">Consultar</button>
+            </form>
+
+            <br>
+
+            <table border="1" cellpadding="8">
+                <thead>
+                    <tr>
+                        <th>Categoría</th>
+                        <th>Total gastado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="2">Todavía no hay resultados para mostrar.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <!-----
+    <footer>
+        <br>
+        <a href="panel.html">Volver al panel</a>
+    </footer>
+    --->
+    <script src="script.js"></script>
+
+</body>
+</html>

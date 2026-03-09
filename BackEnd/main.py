@@ -1,5 +1,7 @@
-import utils
-
+import persistencia
+import gastos
+import ingresos
+import balance
 
 def menu():
     while True:
@@ -8,9 +10,9 @@ def menu():
         print("2. Registrar ingreso")
         print("3. Mostrar gastos")
         print("4. Mostrar ingresos")
-        print("5. Calcular balance")
+        print("5. Calcular balance total")
         print("6. Mostrar gastos por categoría")
-        print("7. Mostrar gastos mensuales")
+        print("7. Mostrar balance mensual")
         print("8. Editar gasto")
         print("9. Editar ingreso")
         print("10. Eliminar gasto")
@@ -20,27 +22,27 @@ def menu():
         opcion = input("Seleccione una opción: ")
 
         if opcion == "1":
-            utils.registrarGastos()
+            gastos.registrarGastos()
         elif opcion == "2":
-            utils.registrarIngresos()
+            ingresos.registrarIngresos()
         elif opcion == "3":
-            utils.mostrarGastos()
+            gastos.mostrarGastos()
         elif opcion == "4":
-            utils.mostrarIngresos()
+            ingresos.mostrarIngresos()
         elif opcion == "5":
-            utils.calcularBalance()
+            balance.calcularBalance()
         elif opcion == "6":
-            utils.gastosPorCategoria()
+            gastos.gastosPorCategoria()
         elif opcion == "7":
-            utils.gastosMensuales()
+            balance.balanceMensual()
         elif opcion == "8":
-            utils.editarGasto()
+            gastos.editarGasto()
         elif opcion == "9":
-            utils.editarIngreso()
+            ingresos.editarIngreso()
         elif opcion == "10":
-            utils.eliminarGasto()
+            gastos.eliminarGasto()
         elif opcion == "11":
-            utils.eliminarIngreso()
+            ingresos.eliminarIngreso()
         elif opcion == "12":
             print("Saliendo del sistema...")
             break
@@ -48,6 +50,6 @@ def menu():
             print("Opción inválida. Intente nuevamente.")
 
 if __name__ == "__main__":
-    utils.cargar_gastos()
-    utils.cargar_ingresos()
+    persistencia.cargar_gastos()
+    persistencia.cargar_ingresos()
     menu()
