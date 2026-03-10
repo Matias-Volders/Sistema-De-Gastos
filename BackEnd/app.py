@@ -280,7 +280,42 @@ def ingresos():
     return render_template(
         "funcionalidades/ingresos.html",
         usuario=usuario,
-        ingresos=ingresos_usuario
+        ingresos=ingresos_usuario,
+        total_ingresos_mes=None,
+        mes_consultado=None,
+        anio_consultado=None
+    )
+
+@app.route("/ingresos/mensuales", methods=["POST"])
+@login_required
+def ingresos_mensuales():
+    usuario = obtener_usuario_actual()
+    ingresos_usuario = ingresos_service.obtener_ingresos_usuario(session["user_id"])
+
+    mes = request.form.get("mes", "").strip()
+    anio = request.form.get("anio", "").strip()
+
+    total_ingresos_mes = None
+
+    if not mes or not anio:
+        flash("Ingresá mes y año.")
+    else:
+        try:
+            total_ingresos_mes = ingresos_service.total_ingresos_mensuales(
+                session["user_id"],
+                mes,
+                anio
+            )
+        except ValueError:
+            flash("Mes o año inválidos.")
+
+    return render_template(
+        "funcionalidades/ingresos.html",
+        usuario=usuario,
+        ingresos=ingresos_usuario,
+        total_ingresos_mes=total_ingresos_mes,
+        mes_consultado=mes,
+        anio_consultado=anio
     )
 
 

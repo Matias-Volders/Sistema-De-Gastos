@@ -1,5 +1,5 @@
 import persistencia
-
+from datetime import datetime
 
 def crear_ingreso(user_id, monto, origen, descripcion, fecha):
     persistencia.cargar_ingresos()
@@ -76,3 +76,14 @@ def editar_ingreso(user_id, ingreso_id, monto, origen, descripcion, fecha):
             return True
 
     return False
+
+def total_ingresos_mensuales(user_id, mes, anio):
+    ingresos_usuario = obtener_ingresos_usuario(user_id)
+    total = 0
+
+    for ingreso in ingresos_usuario:
+        fecha_obj = datetime.strptime(ingreso["fecha"], "%Y-%m-%d")
+        if fecha_obj.month == int(mes) and fecha_obj.year == int(anio):
+            total += ingreso["monto"]
+
+    return total

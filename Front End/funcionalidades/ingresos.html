@@ -43,6 +43,24 @@
 
     <hr>
 
+    <h2>Consultar ingresos mensuales</h2>
+    <form action="{{ url_for('ingresos_mensuales') }}" method="post">
+        <label>Mes:</label><br>
+        <input type="number" name="mes" min="1" max="12" required><br><br>
+
+        <label>Año:</label><br>
+        <input type="number" name="anio" required><br><br>
+
+        <button type="submit">Consultar ingresos mensuales</button>
+    </form>
+
+    {% if total_ingresos_mes is not none %}
+        <h3>Resultado de {{ mes_consultado }}/{{ anio_consultado }}</h3>
+        <p><strong>Total ingresos del mes:</strong> {{ total_ingresos_mes }}</p>
+    {% endif %}
+
+    <hr>
+
     <h2>Lista de ingresos</h2>
     {% if ingresos %}
         <ul>
@@ -52,9 +70,11 @@
                     {{ ingreso.origen }} -
                     {{ ingreso.descripcion }} -
                     ${{ ingreso.monto }}
+
                     <form action="{{ url_for('editar_ingreso', ingreso_id=ingreso.id) }}" method="get" style="display:inline;">
                         <button type="submit">Editar</button>
                     </form>
+
                     <form action="{{ url_for('eliminar_ingreso', ingreso_id=ingreso.id) }}" method="post" style="display:inline;">
                         <button type="submit">Eliminar</button>
                     </form>
