@@ -1,13 +1,13 @@
 Requerimientos funcionales:
 
-el sistema debe registrar los gastos del usuario
-el sistema debe registrar los gastos de dinero
-el sistema debe listar todas las entradas y salidas de dinero que tenga el usuario
-el sistema debe calcular un balance general
-el sistema debe calcular gastos mensuales
-el sistema debe estimar cuanto se gasta en un mes
-el sistema debe calcular gastos diarios
-el sistema debe diferenciar los gastos por categorias y generar una breve explicacion de pq se genero ese gasto
+el sistema debe registrar los gastos del usuario    ✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔
+el sistema debe registrar los gastos de dinero      ✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔
+el sistema debe listar todas las entradas y salidas de dinero que tenga el usuario ✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔
+el sistema debe calcular un balance general         ✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔
+el sistema debe calcular gastos mensuales           ✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔
+el sistema debe estimar cuanto se gasta en un mes   ✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔
+el sistema debe diferenciar los gastos por categorias 
+el sistema debe calcular ingresos mensuales
 
 Requerimientos no funcionales:
 

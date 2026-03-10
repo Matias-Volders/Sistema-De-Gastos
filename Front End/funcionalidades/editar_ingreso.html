@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar ingreso</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Editar ingreso</h1>
+
+    <a href="{{ url_for('ingresos') }}">Volver a ingresos</a>
+    <br><br>
+    <a href="{{ url_for('panel') }}">Volver al panel</a>
+
+    {% with mensajes = get_flashed_messages() %}
+        {% if mensajes %}
+            <ul>
+                {% for mensaje in mensajes %}
+                    <li>{{ mensaje }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    <hr>
+
+    <form action="{{ url_for('editar_ingreso', ingreso_id=ingreso.id) }}" method="post">
+        <label>Monto:</label><br>
+        <input type="number" step="0.01" name="monto" value="{{ ingreso.monto }}" required><br><br>
+
+        <label>Origen:</label><br>
+        <input type="text" name="origen" value="{{ ingreso.origen }}" required><br><br>
+
+        <label>Descripción:</label><br>
+        <input type="text" name="descripcion" value="{{ ingreso.descripcion }}" required><br><br>
+
+        <label>Fecha:</label><br>
+        <input type="date" name="fecha" value="{{ ingreso.fecha }}" required><br><br>
+
+        <button type="submit">Guardar cambios</button>
+    </form>
+</body>
+</html>

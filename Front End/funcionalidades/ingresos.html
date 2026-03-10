@@ -2,109 +2,67 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestión de Ingresos</title>
+    <title>Ingresos</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+    <h1>Ingresos de {{ usuario.nombre }}</h1>
 
-    <header>
-        <h1>Gestión de Ingresos</h1>
-        <p>Seleccioná la funcionalidad que querés usar.</p>
-    </header>
+    <a href="{{ url_for('panel') }}">Volver al panel</a>
+    <br><br>
+    <a href="{{ url_for('cerrar_sesion') }}">Cerrar sesión</a>
 
-    <main>
-        <section>
-            <button onclick="mostrarSeccion('registrar')" type="button">Registrar ingreso</button>
-            <button onclick="mostrarSeccion('mostrar')" type="button">Mostrar ingresos</button>
-            <button onclick="mostrarSeccion('editar')" type="button">Editar ingreso</button>
-            <button onclick="mostrarSeccion('eliminar')" type="button">Eliminar ingreso</button>
-        </section>
+    {% with mensajes = get_flashed_messages() %}
+        {% if mensajes %}
+            <ul>
+                {% for mensaje in mensajes %}
+                    <li>{{ mensaje }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
 
-        <hr>
+    <hr>
 
-        <section id="registrar" style="display: none;">
-            <h2>Registrar Ingreso</h2>
-            <form action="{{ url_for('registrar_ingreso') }}" method="post">
-                <label>Monto:</label><br>
-                <input type="number" name="monto" step="0.01" required><br><br>
+    <h2>Agregar ingreso</h2>
+    <form action="{{ url_for('ingresos') }}" method="post">
+        <label>Monto:</label><br>
+        <input type="number" step="0.01" name="monto" required><br><br>
 
-                <label>Origen:</label><br>
-                <input type="text" name="origen" required><br><br>
+        <label>Origen:</label><br>
+        <input type="text" name="origen" required><br><br>
 
-                <label>Descripción:</label><br>
-                <input type="text" name="descripcion" required><br><br>
+        <label>Descripción:</label><br>
+        <input type="text" name="descripcion" required><br><br>
 
-                <button type="submit">Guardar ingreso</button>
-            </form>
-        </section>
+        <label>Fecha:</label><br>
+        <input type="date" name="fecha" required><br><br>
 
-        <section id="mostrar" style="display: none;">
-            <h2>Mostrar Ingresos</h2>
+        <button type="submit">Guardar ingreso</button>
+    </form>
 
-            {% if ingresos_lista %}
-                <table border="1" cellpadding="8">
-                    <thead>
-                        <tr>
-                            <th>N°</th>
-                            <th>Monto</th>
-                            <th>Fecha</th>
-                            <th>Origen</th>
-                            <th>Descripción</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for ingreso in ingresos_lista %}
-                        <tr>
-                            <td>{{ loop.index0 }}</td>
-                            <td>{{ ingreso.monto }}</td>
-                            <td>{{ ingreso.fecha }}</td>
-                            <td>{{ ingreso.origen }}</td>
-                            <td>{{ ingreso.descripcion }}</td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            {% else %}
-                <p>No hay ingresos registrados.</p>
-            {% endif %}
-        </section>
+    <hr>
 
-        <section id="editar" style="display: none;">
-            <h2>Editar Ingreso</h2>
-            <form action="{{ url_for('editar_ingreso') }}" method="post">
-                <label>Índice del ingreso:</label><br>
-                <input type="number" name="indice" required><br><br>
-
-                <label>Nuevo monto:</label><br>
-                <input type="number" name="monto" step="0.01" required><br><br>
-
-                <label>Nuevo origen:</label><br>
-                <input type="text" name="origen" required><br><br>
-
-                <label>Nueva descripción:</label><br>
-                <input type="text" name="descripcion" required><br><br>
-
-                <button type="submit">Editar ingreso</button>
-            </form>
-        </section>
-
-        <section id="eliminar" style="display: none;">
-            <h2>Eliminar Ingreso</h2>
-            <form action="{{ url_for('eliminar_ingreso') }}" method="post">
-                <label>Índice del ingreso:</label><br>
-                <input type="number" name="indice" required><br><br>
-
-                <button type="submit">Eliminar ingreso</button>
-            </form>
-        </section>
-    </main>
-
-    <footer>
-        <br>
-        <a href="{{ url_for('panel') }}">Volver al panel</a>
-    </footer>
-
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <h2>Lista de ingresos</h2>
+    {% if ingresos %}
+        <ul>
+            {% for ingreso in ingresos %}
+                <li>
+                    <strong>{{ ingreso.fecha }}</strong> -
+                    {{ ingreso.origen }} -
+                    {{ ingreso.descripcion }} -
+                    ${{ ingreso.monto }}
+                    <form action="{{ url_for('editar_ingreso', ingreso_id=ingreso.id) }}" method="get" style="display:inline;">
+                        <button type="submit">Editar</button>
+                    </form>
+                    <form action="{{ url_for('eliminar_ingreso', ingreso_id=ingreso.id) }}" method="post" style="display:inline;">
+                        <button type="submit">Eliminar</button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No hay ingresos cargados.</p>
+    {% endif %}
 </body>
 </html>

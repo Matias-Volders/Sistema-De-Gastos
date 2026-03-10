@@ -1,0 +1,8 @@
+[
+    {
+        "id": 1,
+        "nombre": "Matias",
+        "email": "mativolders@gmail.com",
+        "password": "scrypt:32768:8:1$P4h7KBOFcDxqfawF$c69b5fa36a58c0427e7a553fd1c5b2f48c3d37e1dd313c351789776c0429d8aebf054a2bab4b29ec561f817b4145bf3767df9bc4f5336300179e19398c419581"
+    }
+]
