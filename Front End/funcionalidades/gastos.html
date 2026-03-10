@@ -19,6 +19,7 @@
             <button onclick="mostrarSeccion('mostrar')" type="button">Mostrar gastos</button>
             <button onclick="mostrarSeccion('editar')" type="button">Editar gasto</button>
             <button onclick="mostrarSeccion('eliminar')" type="button">Eliminar gasto</button>
+            <button onclick="mostrarSeccion('mes')" type="button">Gastos mensuales</button>
             <button onclick="mostrarSeccion('categoria')" type="button">Gastos por categoría mensual</button>
         </section>
 
@@ -98,6 +99,24 @@
 
                 <button type="submit">Eliminar gasto</button>
             </form>
+        </section>
+
+       <section id="mes" style="display: none;">
+            <h2>Gastos Mensuales</h2>
+            <form action="{{ url_for('total_gastos_mensuales') }}" method="post">
+                <label>Mes:</label><br>
+                <input type="number" name="mes" min="1" max="12" required><br><br>
+
+                <label>Año:</label><br>
+                <input type="number" name="anio" required><br><br>
+
+                <button type="submit">Consultar gastos mensuales</button>
+            </form>
+
+            {% if total_gastos is not none %}
+                <h3>Resultado de {{ mes_consultado }}/{{ anio_consultado }}</h3>
+                <p><strong>Total gastos del mes:</strong> {{ total_gastos }}</p>
+            {% endif %}
         </section>
 
         <section id="categoria" style="display: none;">

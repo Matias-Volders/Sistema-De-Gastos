@@ -66,6 +66,22 @@ def eliminar_gasto():
     gastos.eliminar_gasto_web(indice)
     return redirect(url_for("pagina_gastos"))
 
+@app.route("/gastos/mensuales", methods=["POST"])
+def total_gastos_mensuales():
+    mes = request.form["mes"]
+    anio = request.form["anio"]
+
+    total = gastos.total_gastos_mensuales(mes, anio)
+    lista_gastos = gastos.obtener_gastos()
+
+    return render_template(
+        "funcionalidades/gastos.html",
+        gastos_lista=lista_gastos,
+        total_gastos=total,
+        mes_consultado=mes,
+        anio_consultado=anio,
+        categorias_resultado=None
+    )
 
 @app.route("/gastos/categoria", methods=["POST"])
 def gastos_categoria():
@@ -150,6 +166,7 @@ def balance_mensual():
         mes_consultado=mes,
         anio_consultado=anio
     )
+
 
 
 if __name__ == "__main__":

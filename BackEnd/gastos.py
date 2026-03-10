@@ -152,3 +152,12 @@ def gastos_por_categoria_mensual_web(mes, anio):
                 categorias[categoria] = monto
 
     return categorias
+
+def total_gastos_mensuales(mes, anio):
+    gastosDelMes = []
+    for gasto in persistencia.gastos:
+        fecha = datetime.strptime(gasto["fecha"], "%d/%m/%Y %H:%M:%S")
+        if fecha.month == int(mes) and fecha.year == int(anio):
+            gastosDelMes.append(gasto)
+
+    return sum(gasto["monto"] for gasto in gastosDelMes)
