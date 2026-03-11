@@ -22,7 +22,7 @@
         {% endif %}
     {% endwith %}
 
-    <hr>
+    
 
     <h2>Agregar ingreso</h2>
     <form action="{{ url_for('ingresos') }}" method="post">
@@ -41,7 +41,7 @@
         <button type="submit">Guardar ingreso</button>
     </form>
 
-    <hr>
+    
 
     <h2>Consultar ingresos mensuales</h2>
     <form action="{{ url_for('ingresos_mensuales') }}" method="post">
@@ -59,7 +59,7 @@
         <p><strong>Total ingresos del mes:</strong> {{ total_ingresos_mes }}</p>
     {% endif %}
 
-    <hr>
+    
 
     <h2>Lista de ingresos</h2>
     {% if ingresos %}

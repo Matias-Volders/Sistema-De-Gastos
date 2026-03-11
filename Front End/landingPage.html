@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <title>Sistema de gastos</title>
 </head>
 <body>
@@ -15,7 +15,7 @@
             </ul>
         </nav>
     </header>
-    <main>
+    <main> 
         <h1>Sistema de Gastos</h1>
         <p>Bienvenido a tu Sistema de Gastos</p>
         <p>A traves de este sistema seras capaz de almacenar tus gastos e ingresos y poder irte guiando de como gastas tu dinero</p>

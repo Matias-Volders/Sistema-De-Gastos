@@ -22,14 +22,14 @@
         {% endif %}
     {% endwith %}
 
-    <hr>
+    
 
     <h2>Balance total</h2>
     <p><strong>Total ingresos:</strong> {{ total_ingresos }}</p>
     <p><strong>Total gastos:</strong> {{ total_gastos }}</p>
     <p><strong>Balance:</strong> {{ balance }}</p>
 
-    <hr>
+    
 
     <h2>Consultar balance mensual</h2>
     <form action="{{ url_for('balance_mensual') }}" method="post">
@@ -43,7 +43,7 @@
     </form>
 
     {% if balance_mes is not none %}
-        <hr>
+        
         <h3>Resultado de {{ mes_consultado }}/{{ anio_consultado }}</h3>
         <p><strong>Ingresos del mes:</strong> {{ total_ingresos_mes }}</p>
         <p><strong>Gastos del mes:</strong> {{ total_gastos_mes }}</p>

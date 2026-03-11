@@ -22,7 +22,7 @@
         {% endif %}
     {% endwith %}
 
-    <hr>
+    
 
     <h2>Agregar gasto</h2>
     <form action="{{ url_for('gastos') }}" method="post">
@@ -41,7 +41,7 @@
         <button type="submit">Guardar gasto</button>
     </form>
 
-    <hr>
+    
 
     <h2>Consultar gastos mensuales</h2>
     <form action="{{ url_for('gastos_mensuales') }}" method="post">
@@ -59,7 +59,7 @@
         <p><strong>Total gastos del mes:</strong> {{ total_mes }}</p>
     {% endif %}
 
-    <hr>
+    
 
     <h2>Consultar gastos por categoría</h2>
     <form action="{{ url_for('gastos_categoria') }}" method="post">
@@ -80,7 +80,7 @@
         <a href="{{ url_for('gastos') }}">Ver todos los gastos</a>
     {% endif %}
 
-    <hr>
+    
 
     <h2>Lista de gastos</h2>
     {% if gastos %}
