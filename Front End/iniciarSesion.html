@@ -3,14 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Iniciar sesión</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='static/style.css') }}">
 </head>
 <body>
 
     <div class="login-container">
         <div class="login-card">
             <h1>Iniciar sesión</h1>
-
             {% with mensajes = get_flashed_messages() %}
                 {% if mensajes %}
                     <ul class="mensajes">

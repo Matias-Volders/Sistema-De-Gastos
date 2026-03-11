@@ -495,3 +495,4 @@ def balance_mensual():
         anio_consultado=anio
     )
 
+

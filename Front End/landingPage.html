@@ -3,30 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='static/style2.css') }}">
     <title>Sistema de gastos</title>
 </head>
 <body>
+
     <header>
-        <nav>
-            <ul>
-                <li><a href="{{ url_for('registro') }}">Registrarse</a></li>
-                <li><a href="{{ url_for('iniciar_sesion') }}">Iniciar Sesión</a></li>  
-            </ul>
-        </nav>
+        <div class="navbar">
+            <div class="logo">
+                <h2>Sistema de Gastos</h2>
+            </div>
+
+            <div class="nav-links">
+                <a href="{{ url_for('registro') }}">Registrarse</a>
+                <a href="{{ url_for('iniciar_sesion') }}">Iniciar Sesión</a>
+            </div>
+        </div>
     </header>
-    <main> 
-        <h1>Sistema de Gastos</h1>
-        <p>Bienvenido a tu Sistema de Gastos</p>
-        <p>A traves de este sistema seras capaz de almacenar tus gastos e ingresos y poder irte guiando de como gastas tu dinero</p>
+
+    <main>
+        <div class="hero">
+            <div class="hero-texto">
+                <h1>Controlá tus gastos de manera simple</h1>
+                <p>
+                    Bienvenido a tu sistema de gastos personales. 
+                    Acá vas a poder registrar ingresos, cargar gastos, clasificarlos 
+                    y llevar un mejor control de tu dinero día a día.
+                </p>
+                <div class="hero-botones">
+                    <a href="{{ url_for('registro') }}" class="btn-principal">Comenzar</a>
+                    <a href="{{ url_for('iniciar_sesion') }}" class="btn-secundario">Ya tengo cuenta</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <div class="info-card">
+                <h3>Registrar gastos</h3>
+                <p>
+                    Guardá cada gasto que realices con su monto, fecha, categoría
+                    y una breve descripción.
+                </p>
+            </div>
+
+            <div class="info-card">
+                <h3>Registrar ingresos</h3>
+                <p>
+                    Cargá todas tus entradas de dinero para tener una visión más clara
+                    de tu economía personal.
+                </p>
+            </div>
+
+            <div class="info-card">
+                <h3>Consultar balances</h3>
+                <p>
+                    Visualizá tus ingresos, gastos y balance general para entender
+                    mejor cómo administrás tu plata.
+                </p>
+            </div>
+        </div>
+
+        <div class="extra-info">
+            <h2>¿Qué vas a poder hacer con este sistema?</h2>
+            <p>
+                Este sistema fue pensado para ayudarte a organizar mejor tus finanzas
+                personales. Podrás registrar movimientos, analizarlos y entender en qué
+                categorías gastás más, cuánto ingresás por mes y cuál es tu balance total.
+            </p>
+            <p>
+                La idea es que tengas una herramienta simple, clara y útil para mejorar
+                el control de tu dinero sin complicarte.
+            </p>
+        </div>
     </main>
-    <!----
-    <aside>
 
-    </aside>
     <footer>
-
+        <div class="footer-contenido">
+            <p>© 2026 Sistema de Gastos Personales</p>
+        </div>
     </footer>
-    -->
+
 </body>
 </html>
