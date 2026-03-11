@@ -309,3 +309,28 @@ body {
     margin-bottom: 20px;
     text-align: center;
 }
+
+/*EDITAR*/
+
+.edit-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.edit-card {
+    width: 100%;
+    max-width: 650px;
+    padding: 24px;
+}
+
+.form-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.form-actions .btn-secondary {
+    text-align: center;
+}

@@ -3,41 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <title>Editar ingreso</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='static/funcionality.css') }}">
 </head>
 <body>
-    <h1>Editar ingreso</h1>
+    <div class="page-container">
 
-    <a href="{{ url_for('ingresos') }}">Volver a ingresos</a>
-    <br><br>
-    <a href="{{ url_for('panel') }}">Volver al panel</a>
+        <header class="page-header">
+            <h1 class="page-title">Editar ingreso</h1>
+            <div class="top-actions">
+                <a href="{{ url_for('ingresos') }}" class="top-link">Volver a ingresos</a>
+                <a href="{{ url_for('panel') }}" class="top-link">Volver al panel</a>
+            </div>
+        </header>
 
-    {% with mensajes = get_flashed_messages() %}
-        {% if mensajes %}
-            <ul>
-                {% for mensaje in mensajes %}
-                    <li>{{ mensaje }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-    {% endwith %}
+        {% with mensajes = get_flashed_messages() %}
+            {% if mensajes %}
+                <ul class="flash-messages">
+                    {% for mensaje in mensajes %}
+                        <li>{{ mensaje }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
 
-    
+        <section class="edit-wrapper">
+            <div class="content-card edit-card">
+                <h2 class="section-title">Modificar datos del ingreso</h2>
 
-    <form action="{{ url_for('editar_ingreso', ingreso_id=ingreso.id) }}" method="post">
-        <label>Monto:</label><br>
-        <input type="number" step="0.01" name="monto" value="{{ ingreso.monto }}" required><br><br>
+                <form action="{{ url_for('editar_ingreso', ingreso_id=ingreso.id) }}" method="post" class="form-block">
+                    <label for="monto">Monto</label>
+                    <input type="number" step="0.01" name="monto" id="monto" value="{{ ingreso.monto }}" required>
 
-        <label>Origen:</label><br>
-        <input type="text" name="origen" value="{{ ingreso.origen }}" required><br><br>
+                    <label for="origen">Origen</label>
+                    <input type="text" name="origen" id="origen" value="{{ ingreso.origen }}" required>
 
-        <label>Descripción:</label><br>
-        <input type="text" name="descripcion" value="{{ ingreso.descripcion }}" required><br><br>
+                    <label for="descripcion">Descripción</label>
+                    <input type="text" name="descripcion" id="descripcion" value="{{ ingreso.descripcion }}" required>
 
-        <label>Fecha:</label><br>
-        <input type="date" name="fecha" value="{{ ingreso.fecha }}" required><br><br>
+                    <label for="fecha">Fecha</label>
+                    <input type="date" name="fecha" id="fecha" value="{{ ingreso.fecha }}" required>
 
-        <button type="submit">Guardar cambios</button>
-    </form>
+                    <div class="form-actions">
+                        <button type="submit" class="btn-primary">Guardar cambios</button>
+                        <a href="{{ url_for('ingresos') }}" class="btn-secondary">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+    </div>
 </body>
 </html>
