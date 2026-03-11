@@ -7,7 +7,7 @@ el sistema debe calcular un balance general         ✔✔✔✔✔✔✔✔✔�
 el sistema debe calcular gastos mensuales           ✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔
 el sistema debe estimar cuanto se gasta en un mes   ✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔
 el sistema debe diferenciar los gastos por categorias 
-el sistema debe calcular ingresos mensuales
+el sistema debe calcular ingresos mensuales         ✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔✔
 
 Requerimientos no funcionales:
 

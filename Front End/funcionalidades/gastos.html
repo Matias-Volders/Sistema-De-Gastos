@@ -60,7 +60,28 @@
     {% endif %}
 
     <hr>
-    
+
+    <h2>Consultar gastos por categoría</h2>
+    <form action="{{ url_for('gastos_categoria') }}" method="post">
+        <label>Categoría:</label><br>
+        <select name="categoria" required>
+            <option value="">Seleccionar</option>
+            {% for categoria in categorias %}
+                <option value="{{ categoria }}">{{ categoria }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <button type="submit">Consultar categoría</button>
+    </form>
+
+    {% if categoria_consultada %}
+        <h3>Categoría: {{ categoria_consultada }}</h3>
+        <p><strong>Total gastado en esta categoría:</strong> {{ total_categoria }}</p>
+        <a href="{{ url_for('gastos') }}">Ver todos los gastos</a>
+    {% endif %}
+
+    <hr>
+
     <h2>Lista de gastos</h2>
     {% if gastos %}
         <ul>
@@ -70,9 +91,11 @@
                     {{ gasto.categoria }} -
                     {{ gasto.descripcion }} -
                     ${{ gasto.monto }}
+
                     <form action="{{ url_for('editar_gasto', gasto_id=gasto.id) }}" method="get" style="display:inline;">
                         <button type="submit">Editar</button>
                     </form>
+
                     <form action="{{ url_for('eliminar_gasto', gasto_id=gasto.id) }}" method="post" style="display:inline;">
                         <button type="submit">Eliminar</button>
                     </form>

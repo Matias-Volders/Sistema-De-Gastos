@@ -90,3 +90,27 @@ def editar_gasto(user_id, gasto_id, monto, categoria, descripcion, fecha):
 
     return False
 
+def obtener_categorias_usuario(user_id):
+    gastos_usuario = obtener_gastos_usuario(user_id)
+    categorias = set()
+
+    for gasto in gastos_usuario:
+        categoria = gasto.get("categoria", "").strip()
+        if categoria:
+            categorias.add(categoria)
+
+    return sorted(list(categorias))
+
+
+def obtener_gastos_por_categoria(user_id, categoria):
+    gastos_usuario = obtener_gastos_usuario(user_id)
+
+    return [
+        gasto for gasto in gastos_usuario
+        if gasto.get("categoria", "").strip().lower() == categoria.strip().lower()
+    ]
+
+
+def total_gastos_por_categoria(user_id, categoria):
+    gastos_categoria = obtener_gastos_por_categoria(user_id, categoria)
+    return sum(gasto["monto"] for gasto in gastos_categoria)

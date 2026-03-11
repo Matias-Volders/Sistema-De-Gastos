@@ -143,14 +143,63 @@ def gastos():
                 flash("El monto del gasto debe ser numérico.")
 
     gastos_usuario = gastos_service.obtener_gastos_usuario(session["user_id"])
+    categorias = gastos_service.obtener_categorias_usuario(session["user_id"])
 
     return render_template(
         "funcionalidades/gastos.html",
         usuario=usuario,
         gastos=gastos_usuario,
+        categorias=categorias,
         total_mes=None,
         mes_consultado=None,
-        anio_consultado=None
+        anio_consultado=None,
+        categoria_consultada=None,
+        total_categoria=None
+    )
+
+@app.route("/gastos/categoria", methods=["POST"])
+@login_required
+def gastos_categoria():
+    usuario = obtener_usuario_actual()
+    categorias = gastos_service.obtener_categorias_usuario(session["user_id"])
+    categoria = request.form.get("categoria", "").strip()
+
+    if not categoria:
+        flash("Seleccioná una categoría.")
+        gastos_usuario = gastos_service.obtener_gastos_usuario(session["user_id"])
+
+        return render_template(
+            "funcionalidades/gastos.html",
+            usuario=usuario,
+            gastos=gastos_usuario,
+            categorias=categorias,
+            total_mes=None,
+            mes_consultado=None,
+            anio_consultado=None,
+            categoria_consultada=None,
+            total_categoria=None
+        )
+
+    gastos_filtrados = gastos_service.obtener_gastos_por_categoria(
+        session["user_id"],
+        categoria
+    )
+
+    total_categoria = gastos_service.total_gastos_por_categoria(
+        session["user_id"],
+        categoria
+    )
+
+    return render_template(
+        "funcionalidades/gastos.html",
+        usuario=usuario,
+        gastos=gastos_filtrados,
+        categorias=categorias,
+        total_mes=None,
+        mes_consultado=None,
+        anio_consultado=None,
+        categoria_consultada=categoria,
+        total_categoria=total_categoria
     )
 
 
@@ -220,6 +269,7 @@ def editar_gasto(gasto_id):
 def gastos_mensuales():
     usuario = obtener_usuario_actual()
     gastos_usuario = gastos_service.obtener_gastos_usuario(session["user_id"])
+    categorias = gastos_service.obtener_categorias_usuario(session["user_id"])
 
     mes = request.form.get("mes", "").strip()
     anio = request.form.get("anio", "").strip()
@@ -242,9 +292,12 @@ def gastos_mensuales():
         "funcionalidades/gastos.html",
         usuario=usuario,
         gastos=gastos_usuario,
+        categorias=categorias,
         total_mes=total_mes,
         mes_consultado=mes,
-        anio_consultado=anio
+        anio_consultado=anio,
+        categoria_consultada=None,
+        total_categoria=None
     )
 
 
