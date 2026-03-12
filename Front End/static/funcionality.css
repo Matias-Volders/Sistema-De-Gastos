@@ -27,6 +27,14 @@ body {
     margin-bottom: 20px;
 }
 
+.bottom-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 25px;
+}
+
 .top-actions {
     display: flex;
     justify-content: center;

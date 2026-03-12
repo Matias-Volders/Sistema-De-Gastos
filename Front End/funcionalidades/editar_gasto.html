@@ -10,10 +10,7 @@
 
         <header class="page-header">
             <h1 class="page-title">Editar gasto</h1>
-            <div class="top-actions">
-                <a href="{{ url_for('gastos') }}" class="top-link">Volver a gastos</a>
-                <a href="{{ url_for('panel') }}" class="top-link">Volver al panel</a>
-            </div>
+            
         </header>
 
         {% with mensajes = get_flashed_messages() %}
@@ -48,9 +45,13 @@
                         <a href="{{ url_for('gastos') }}" class="btn-secondary">Cancelar</a>
                     </div>
                 </form>
+                
             </div>
         </section>
-
+        <div class="bottom-actions">
+            <a href="{{ url_for('gastos') }}" class="top-link">Volver a gastos</a>
+            <a href="{{ url_for('panel') }}" class="top-link">Volver al panel</a>
+        </div>
     </div>
 </body>
 </html>

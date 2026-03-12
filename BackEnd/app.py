@@ -95,7 +95,6 @@ def iniciar_sesion():
         session["user_id"] = usuario["id"]
         session["user_nombre"] = usuario["nombre"]
 
-        flash(f"Bienvenido, {usuario['nombre']}.")
         return redirect(url_for("panel"))
 
     return render_template("iniciarSesion.html")
