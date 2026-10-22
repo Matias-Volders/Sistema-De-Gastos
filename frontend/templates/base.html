@@ -1,0 +1,15 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Sistema de Gastos{% endblock %}</title>
+    {% block styles %}<link rel="stylesheet" href="{% static 'css/funcionality.css' %}">{% endblock %}
+    <link rel="stylesheet" href="{% static 'css/django.css' %}">
+    <script src="{% static 'js/forms.js' %}" defer></script>
+</head>
+<body>
+    {% block content %}{% endblock %}
+</body>
+</html>

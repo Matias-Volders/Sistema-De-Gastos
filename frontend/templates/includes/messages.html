@@ -1,0 +1,5 @@
+{% if messages %}
+<ul class="flash-messages" aria-live="polite">
+    {% for message in messages %}<li>{{ message }}</li>{% endfor %}
+</ul>
+{% endif %}

@@ -1,0 +1,26 @@
+* { box-sizing: border-box; }
+.form-field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.form-field input, .form-field select { width: 100%; }
+.errorlist { color: #9c1c1c; background: #fff0f0; padding: 10px 10px 10px 28px; margin: 5px 0; border-radius: 6px; }
+.flash-messages { list-style: none; padding: 0; }
+.flash-messages li { background: #fff; color: #244c38; padding: 12px; margin-bottom: 12px; border-radius: 8px; }
+.link-button { background: transparent; font: inherit; cursor: pointer; }
+.top-actions { align-items: center; }
+.login-container { padding: 20px; }
+.list-total { padding: 12px 20px; }
+.balance-general { margin-bottom: 25px; }
+.panel-card h2 { color: #222; font-size: 24px; margin-bottom: 15px; }
+.item-info, .stat-value { overflow-wrap: anywhere; }
+.btn-small { text-decoration: none; }
+@media (max-width: 600px) {
+    .section-grid, .stats-grid { grid-template-columns: minmax(0, 1fr); }
+    .page-title { font-size: 28px; }
+    .content-card { padding: 18px; }
+    .item-list { padding: 10px; }
+    .login-card { padding: 24px 20px; }
+    .navbar { flex-wrap: wrap; gap: 18px; }
+    .nav-links { display: flex; flex-wrap: wrap; gap: 12px; }
+    .nav-links a { margin-left: 0; }
+    .hero-texto h1 { font-size: 30px; }
+    header, main { max-width: 100%; }
+}

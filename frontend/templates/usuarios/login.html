@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Iniciar sesión{% endblock %}
+{% block styles %}<link rel="stylesheet" href="{% static 'css/user.css' %}">{% endblock %}
+{% block content %}
+<main class="login-container">
+    <div class="login-card">
+        <h1>Iniciar sesión</h1>
+        {% include 'includes/messages.html' %}
+        <form action="{% url 'iniciar_sesion' %}" method="post" id="iniciar-sesion-form">
+            {% csrf_token %}
+            {% include 'includes/fields.html' %}
+            <button type="submit">Ingresar</button>
+        </form>
+        <p class="link-registro">¿No tenés cuenta? <a href="{% url 'registro' %}">Crear cuenta</a></p>
+    </div>
+</main>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Registrarse{% endblock %}
+{% block styles %}<link rel="stylesheet" href="{% static 'css/user.css' %}">{% endblock %}
+{% block content %}
+<main class="login-container">
+    <div class="login-card">
+        <h1>Registro</h1>
+        {% include 'includes/messages.html' %}
+        <form action="{% url 'registro' %}" method="post" id="registrarse-form">
+            {% csrf_token %}
+            {% include 'includes/fields.html' %}
+            <button type="submit">Registrarme</button>
+        </form>
+        <p class="link-registro">¿Ya tenés cuenta? <a href="{% url 'iniciar_sesion' %}">Iniciar sesión</a></p>
+    </div>
+</main>
+{% endblock %}
