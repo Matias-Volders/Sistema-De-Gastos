@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}Balance{% endblock %}
+{% block content %}
+<main class="page-container">
+    <header class="page-header">
+        <h1 class="page-title">Balance de {{ request.user.nombre }}</h1>
+        {% include 'includes/navigation.html' %}
+    </header>
+    {% include 'includes/messages.html' %}
+    <section class="content-card balance-general">
+        <h2>Balance total</h2>
+        <div class="stats-grid">
+            <div class="stat-card"><h3>Total ingresos</h3><p class="stat-value">${{ resumen.total_ingresos|floatformat:2 }}</p></div>
+            <div class="stat-card"><h3>Total gastos</h3><p class="stat-value">${{ resumen.total_gastos|floatformat:2 }}</p></div>
+            <div class="stat-card"><h3>Balance</h3><p class="stat-value">${{ resumen.balance|floatformat:2 }}</p></div>
+        </div>
+    </section>
+    <section class="content-card">
+        <h2>Consultar balance mensual</h2>
+        <form action="{% url 'balance' %}" method="get" class="form-block">
+            {% include 'includes/fields.html' %}
+            <button type="submit" class="btn-primary">Consultar balance</button>
+        </form>
+        {% if resumen_mes != None %}
+        <div class="result-box">
+            <h3>Resultado de {{ form.mes.value }}/{{ form.anio.value }}</h3>
+            <p><strong>Ingresos del mes:</strong> ${{ resumen_mes.total_ingresos|floatformat:2 }}</p>
+            <p><strong>Gastos del mes:</strong> ${{ resumen_mes.total_gastos|floatformat:2 }}</p>
+            <p><strong>Balance del mes:</strong> ${{ resumen_mes.balance|floatformat:2 }}</p>
+        </div>
+        {% endif %}
+    </section>
+</main>
+{% endblock %}

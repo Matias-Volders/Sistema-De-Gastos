@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% block title %}{{ titulo }}{% endblock %}
+{% block content %}
+<main class="page-container">
+    <header class="page-header">
+        <h1 class="page-title">{{ titulo }} de {{ request.user.nombre }}</h1>
+        {% include 'includes/navigation.html' %}
+    </header>
+    {% include 'includes/messages.html' %}
+    <div class="section-grid">
+        <section class="content-card">
+            <h2>Agregar {{ configuracion.singular }}</h2>
+            <form action="{% url tipo %}" method="post" class="form-block">
+                {% csrf_token %}
+                {% include 'includes/fields.html' %}
+                <button type="submit" class="btn-primary">Guardar</button>
+            </form>
+        </section>
+        <section class="content-card">
+            <h2>Consultar por mes</h2>
+            <form action="{% url tipo %}" method="get" class="form-block">
+                {% include 'includes/fields.html' with form=periodo_form %}
+                {% if configuracion.permite_categoria %}
+                <label for="categoria_mes">Categoría (opcional)</label>
+                <select name="categoria" id="categoria_mes">
+                    <option value="">Todas</option>
+                    {% for value, label in categoria_form.fields.categoria.choices %}
+                    {% if value %}<option value="{{ value }}" {% if categoria_form.categoria.value == value %}selected{% endif %}>{{ label }}</option>{% endif %}
+                    {% endfor %}
+                </select>
+                {% endif %}
+                <button type="submit" class="btn-primary">Consultar mes</button>
+            </form>
+        </section>
+        {% if configuracion.permite_categoria %}
+        <section class="content-card">
+            <h2>Consultar por categoría</h2>
+            <form action="{% url 'gastos' %}" method="get" class="form-block">
+                {% include 'includes/fields.html' with form=categoria_form %}
+                <button type="submit" class="btn-primary">Consultar categoría</button>
+            </form>
+        </section>
+        {% endif %}
+    </div>
+    <section class="content-card list-section">
+        <h2 class="section-title">{% if filtrado %}Resultados de la consulta{% else %}Lista de {{ tipo }}{% endif %}</h2>
+        {% if total != None %}<p class="list-total"><strong>Total {% if filtrado %}consultado{% else %}registrado{% endif %}:</strong> ${{ total|floatformat:2 }}</p>{% endif %}
+        {% if filtrado %}<a href="{% url tipo %}" class="link-inline">Ver todos los {{ tipo }}</a>{% endif %}
+        <ul class="item-list">
+            {% for movimiento in movimientos %}
+            <li class="item-card">
+                <div class="item-main">
+                    <div class="item-info">
+                        <p class="item-date">{{ movimiento.fecha|date:'d/m/Y' }}</p>
+                        <p><strong>{{ configuracion.etiqueta_clasificacion }}:</strong> {{ movimiento.clasificacion }}</p>
+                        <p><strong>Descripción:</strong> {{ movimiento.descripcion }}</p>
+                    </div>
+                    <div class="item-amount">${{ movimiento.monto|floatformat:2 }}</div>
+                </div>
+                <div class="item-actions">
+                    <a href="{% url configuracion.url_editar movimiento.id %}" class="btn-small">Editar</a>
+                    <form action="{% url configuracion.url_eliminar movimiento.id %}" method="post" class="inline-form" data-confirm-delete>
+                        {% csrf_token %}<button type="submit" class="btn-danger">Eliminar</button>
+                    </form>
+                </div>
+            </li>
+            {% empty %}<li class="empty-state">No hay movimientos para mostrar.</li>{% endfor %}
+        </ul>
+    </section>
+</main>
+{% endblock %}

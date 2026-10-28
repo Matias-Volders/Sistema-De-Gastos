@@ -1,0 +1,15 @@
+.venv/
+.idea/
+__pycache__/
+*.py[cod]
+.local/
+.env
+.env.*
+!.env.example
+Datos/*.json
+Datos/*.lock
+Datos/*.tmp
+*.sqlite3
+staticfiles/
+.coverage
+htmlcov/

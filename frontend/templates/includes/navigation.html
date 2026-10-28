@@ -1,0 +1,6 @@
+<nav class="top-actions" aria-label="Navegación principal">
+    <a href="{% url 'panel' %}" class="top-link">Volver al panel</a>
+    <form action="{% url 'cerrar_sesion' %}" method="post" class="inline-form">
+        {% csrf_token %}<button type="submit" class="top-link link-button">Cerrar sesión</button>
+    </form>
+</nav>

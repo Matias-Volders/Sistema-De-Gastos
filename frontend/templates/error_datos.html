@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %}Datos no disponibles{% endblock %}
+{% block content %}
+<main class="page-container"><section class="content-card">
+    <h1>No pudimos acceder a los datos</h1>
+    <p>No pudimos completar la solicitud. Revisá la conexión a la base de datos.</p>
+    <p>Antes de repetir una carga, comprobá si se guardó cuando la conexión vuelva a estar disponible.</p>
+    <a href="{% url 'panel' %}">Volver al panel</a>
+</section></main>
+{% endblock %}
